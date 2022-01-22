@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ktor.databinding.ActivityMainBinding
@@ -33,6 +34,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         getProducts()
+
+        loading()
     }
 
     private fun getProducts() {
@@ -43,6 +46,10 @@ class MainActivity : AppCompatActivity() {
                         productAdapter.submitList(it.value)
                     }
 
+                    is ApiResult.Loading -> {
+                        binding.progress.isVisible = false
+                    }
+
                     is ApiResult.Failure -> {
                         Toast.makeText(
                             this@MainActivity,
@@ -50,9 +57,17 @@ class MainActivity : AppCompatActivity() {
                             Toast.LENGTH_SHORT
                         ).show()
 
+                        binding.progress.isVisible = false
+
                     }
                 }
             }
         }
+    }
+
+    private fun loading() {
+        viewModel.isLoading.observe(this, {
+            binding.progress.isVisible = it
+        })
     }
 }
