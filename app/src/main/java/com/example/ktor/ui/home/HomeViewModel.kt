@@ -9,7 +9,7 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val productRepository: ProductRepository
-):ViewModel() {
+) : ViewModel() {
 
     fun geProduct() = flow {
         emit(productRepository.getProducts())

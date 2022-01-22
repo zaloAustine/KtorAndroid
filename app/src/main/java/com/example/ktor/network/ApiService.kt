@@ -5,7 +5,7 @@ import com.example.ktor.data.models.ResponseModel
 
 interface ApiService {
 
-    suspend fun getProducts(): ApiResult<List<ResponseModel>>
+    suspend fun getProducts(): List<ResponseModel>
 
-    suspend fun createProducts(productRequest: RequestModel): ApiResult<ResponseModel>
+    suspend fun createProducts(productRequest: RequestModel):ResponseModel
 }
