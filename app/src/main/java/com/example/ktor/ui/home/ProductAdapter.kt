@@ -14,10 +14,13 @@ class ProductAdapter() :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ResponseModel) {
             with(binding) {
-
+                productName.text = item.title
+                productDesc.text = item.description
+                productPrice.text = "${item.price} $"
             }
         }
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder(ProductItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
 
