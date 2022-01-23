@@ -34,7 +34,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         getProducts()
-
         loading()
     }
 
@@ -46,20 +45,14 @@ class MainActivity : AppCompatActivity() {
                         productAdapter.submitList(it.value)
                     }
 
-                    is ApiResult.Loading -> {
-                        binding.progress.isVisible = false
-                    }
-
                     is ApiResult.Failure -> {
                         Toast.makeText(
                             this@MainActivity,
                             it.throwable.localizedMessage,
                             Toast.LENGTH_SHORT
                         ).show()
-
-                        binding.progress.isVisible = false
-
                     }
+                    else -> {}
                 }
             }
         }

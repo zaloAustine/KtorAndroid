@@ -19,7 +19,7 @@ class HomeViewModel @Inject constructor(
     fun geProduct() = flow {
         _isLoading.value = true
         emit(productRepository.getProducts())
-        _isLoading.value = true
+        _isLoading.value = false
     }
 
 }
